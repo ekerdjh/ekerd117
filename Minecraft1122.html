@@ -54,5 +54,21 @@
 		</script>
 	</head>
 	<body style="margin:0px;width:100vw;height:100vh;overflow:hidden;" id="game_frame">
+		<script>
+  // Force focus on any click inside the page
+  window.addEventListener('click', function() {
+    window.focus();
+    const canvas = document.querySelector('canvas');
+    if (canvas) canvas.focus();
+  });
+
+  // Redirect top-level document keys straight to the window
+  document.addEventListener('keydown', function(e) {
+    if (window.top !== window) {
+      // Helps pass inputs if Google's parent wrappers are blocking them
+      window.dispatchEvent(new KeyboardEvent('keydown', e));
+    }
+  });
+</script>
 	</body>
 </html>
